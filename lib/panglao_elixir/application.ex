@@ -12,6 +12,9 @@ defmodule PanglaoElixir.Application do
     children = [
       # Starts a worker by calling: PanglaoElixir.Worker.start_link(arg1, arg2, arg3)
       # worker(PanglaoElixir.Worker, [arg1, arg2, arg3]),
+      supervisor(ConCache, [
+        [ttl_check: :timer.seconds(60), ttl: :timer.seconds(60 * 60 * 24 * 10)],
+        [name: :panglao_elixir]], id: :panglao_elixir_cache),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

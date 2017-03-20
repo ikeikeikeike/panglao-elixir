@@ -29,4 +29,6 @@ use Mix.Config
 #
 #     import_config "#{Mix.env}.exs"
 config :panglao_elixir,
-  endpoint: "http://127.0.0.1:5000/1"
+  endpoint: "http://127.0.0.1:5000/1",
+  email: "jp.ne.co.jp@gmail.com",
+  password: "jp.ne.co.jp@gmail.com"

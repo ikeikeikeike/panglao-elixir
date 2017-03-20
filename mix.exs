@@ -32,6 +32,7 @@ defmodule PanglaoElixir.Mixfile do
     [
       {:poison, "~> 3.1"},
       {:httpoison, "~> 0.11"},
+      {:con_cache, "~> 0.12"},
     ]
   end
 end
