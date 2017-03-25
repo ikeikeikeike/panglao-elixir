@@ -18,8 +18,9 @@ defmodule PanglaoElixir.Client do
 
   def process_response_body(body) do
     case Poison.decode body do
-      {:ok,    body} -> body
-      {:error, body} -> body
+      {:ok,    body}        -> body
+      {:error, body}        -> body
+      {:error, :invalid, 0} -> body
     end
   end
 
