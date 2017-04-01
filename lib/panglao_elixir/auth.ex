@@ -9,7 +9,7 @@ defmodule PanglaoElixir.Auth do
   end
 
   def token do
-    params = %{"email" => @email, "password" => @password}
+    params = [email: => @email, password: => @password]
     key    = Poison.encode! Enum.into(params, %{})
 
     if token = ConCache.get(:panglao_elixir, key) do
