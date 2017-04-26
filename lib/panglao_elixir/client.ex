@@ -16,6 +16,10 @@ defmodule PanglaoElixir.Client do
     end
   end
 
+  def process_request_options(options) do
+    Keyword.merge options, [recv_timeout: 60_000, timeout: 60_000]
+  end
+
   def process_response_body(body) do
     case Poison.decode body do
       {:ok,    body}        -> body
