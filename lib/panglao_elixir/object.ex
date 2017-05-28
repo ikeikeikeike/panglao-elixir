@@ -6,6 +6,7 @@ defmodule PanglaoElixir.Object do
   @moduledoc """
   get "/link", ObjectController, :link
   get "/info", ObjectController, :info
+  get "/alive", ObjectController, :alive
   get "/rename", ObjectController, :rename
   get "/upload", ObjectController, :upload
   get "/splash", ObjectController, :splash
@@ -22,6 +23,19 @@ defmodule PanglaoElixir.Object do
   end
   def link!(params) do
     link! Auth.token, params
+  end
+
+  def alive(token, params) do
+    get "/object/alive", auth(token), params:  params
+  end
+  def alive(params) do
+    alive Auth.token, params
+  end
+  def alive!(token, params) do
+    get! "/object/alive", auth(token), params:  params
+  end
+  def alive!(params) do
+    alive! Auth.token, params
   end
 
   def info(token, params) do
