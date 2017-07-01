@@ -12,8 +12,10 @@ defmodule PanglaoElixir.Application do
     children = [
       # Starts a worker by calling: PanglaoElixir.Worker.start_link(arg1, arg2, arg3)
       # worker(PanglaoElixir.Worker, [arg1, arg2, arg3]),
+      :hackney_pool.child_spec(:panglao_elixir, [max_connections: 3_000]),
+
       supervisor(ConCache, [
-        [ttl_check: :timer.seconds(60), ttl: :timer.seconds(60 * 60 * 24 * 10)],
+        [ttl_check: :timer.seconds(60), ttl: :timer.seconds(60 * 60 * 24 * 30)],
         [name: :panglao_elixir]], id: :panglao_elixir_cache),
     ]
 

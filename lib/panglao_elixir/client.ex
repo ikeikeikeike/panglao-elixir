@@ -17,7 +17,7 @@ defmodule PanglaoElixir.Client do
   end
 
   def process_request_options(options) do
-    Keyword.merge options, [recv_timeout: 60_000, timeout: 60_000]
+    Keyword.merge options, [hackney: [pool: :panglao_elixir]]
   end
 
   def process_response_body(body) do
