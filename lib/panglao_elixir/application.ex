@@ -15,7 +15,7 @@ defmodule PanglaoElixir.Application do
       :hackney_pool.child_spec(:panglao_elixir, [max_connections: 3_000]),
 
       supervisor(ConCache, [
-        [ttl_check: :timer.seconds(60), ttl: :timer.seconds(60 * 60 * 24 * 30)],
+        [ttl_check: :timer.seconds(60), ttl: :timer.seconds(60 * 60 * 6)],
         [name: :panglao_elixir]], id: :panglao_elixir_cache),
     ]
 
