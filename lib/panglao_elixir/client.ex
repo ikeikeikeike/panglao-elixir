@@ -1,6 +1,9 @@
 defmodule PanglaoElixir.Client do
   use HTTPoison.Base
 
+  alias PanglaoElixir.Auth
+  alias HTTPoison.Error
+
   @endpoint Application.get_env(:panglao_elixir, :endpoint)
 
   def process_url(path) do
@@ -36,4 +39,20 @@ defmodule PanglaoElixir.Client do
     for {k, v} <- payload, into: [], do: {:"#{k}", v}
   end
 
+  def authed_get(url, headers \\ [], options \\ []) do
+    case get url, headers, options do
+      {:ok, %HTTPoison.Response{status_code: 401}} ->
+        authed_get url, auth(Auth.token(:force)), options
+
+      otherwise ->
+        otherwise
+    end
+  end
+
+  def authed_get!(url, headers \\ [], options \\ []) do
+    case authed_get url, headers, options do
+      {:ok, response} -> response
+      {:error, %Error{reason: reason}} -> raise Error, reason: reason
+    end
+  end
 end
