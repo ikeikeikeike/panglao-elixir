@@ -16,9 +16,13 @@ defmodule PanglaoElixir.Auth do
       token
     else
       case login!(params) do
-        %{body: %{"access_token" => token}}
+        %{body: %{"access_token" => token, "expires" => expires}}
             when byte_size(token) > 0 ->
-          ConCache.put(:panglao_elixir, key, token)
+          # Set before expires time and divided millisecs.
+          ttl   = (expires - :os.system_time(:seconds)) * 999
+          value = %ConCache.Item{value: token, ttl: ttl}
+
+          ConCache.put(:panglao_elixir, key, value)
           token
 
         error ->

@@ -13,7 +13,7 @@ defmodule PanglaoElixir.Application do
       # Starts a worker by calling: PanglaoElixir.Worker.start_link(arg1, arg2, arg3)
       # worker(PanglaoElixir.Worker, [arg1, arg2, arg3]),
       supervisor(ConCache, [
-        [ttl_check: :timer.seconds(60), ttl: :timer.seconds(60 * 60 * 24 * 20)],
+        [ttl_check: :timer.seconds(5), ttl: :timer.seconds(60 * 60 * 24 * 30)],
         [name: :panglao_elixir]], id: :panglao_elixir_cache),
     ]
 

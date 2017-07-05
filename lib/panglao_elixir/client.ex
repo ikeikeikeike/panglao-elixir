@@ -22,9 +22,9 @@ defmodule PanglaoElixir.Client do
 
   def process_response_body(body) do
     case Poison.decode body do
-      {:ok,    body}        -> body
-      {:error, body}        -> body
-      {:error, :invalid, 0} -> body
+      {:ok,    body} -> body
+      {:error, body} -> body
+      {:error, _, _} -> body
     end
   end
 
@@ -35,4 +35,5 @@ defmodule PanglaoElixir.Client do
   defp transform(payload) do
     for {k, v} <- payload, into: [], do: {:"#{k}", v}
   end
+
 end
