@@ -10,6 +10,8 @@ defmodule PanglaoElixir.Object do
   authed_get"/rename", ObjectController, :rename
   authed_get"/upload", ObjectController, :upload
   authed_get"/splash", ObjectController, :splash
+  authed_get"/audio", ObjectController, :audio
+  authed_get"/preview", ObjectController, :preview
   """
 
   def link(token, params) do
@@ -75,6 +77,32 @@ defmodule PanglaoElixir.Object do
   end
   def upload!(params) do
     upload! Auth.token, params
+  end
+
+  def audio(token, params) do
+    authed_get"/object/audio", auth(token), params:  params
+  end
+  def audio(params) do
+    audio Auth.token, params
+  end
+  def audio!(token, params) do
+    authed_get!"/object/audio", auth(token), params:  params
+  end
+  def audio!(params) do
+    audio! Auth.token, params
+  end
+
+  def preview(token, params) do
+    authed_get"/object/preview", auth(token), params:  params
+  end
+  def preview(params) do
+    preview Auth.token, params
+  end
+  def preview!(token, params) do
+    authed_get!"/object/preview", auth(token), params:  params
+  end
+  def preview!(params) do
+    preview! Auth.token, params
   end
 
   def splash(token, params) do
