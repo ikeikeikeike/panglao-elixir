@@ -16,17 +16,17 @@ defmodule PanglaoElixir.Remote do
     upload! Auth.token, params
   end
 
-  def support(token, params) do
-    authed_get"/remote/support", auth(token), params:  params
+  def support(token) do
+    authed_get"/remote/support", auth(token)
   end
-  def support(params) do
-    support Auth.token, params
+  def support do
+    support Auth.token
   end
-  def support!(token, params) do
-    authed_get!"/remote/support", auth(token), params:  params
+  def support!(token) do
+    authed_get!"/remote/support", auth(token)
   end
-  def support!(params) do
-    support! Auth.token, params
+  def support! do
+    support! Auth.token
   end
 
   def status(token, params) do
