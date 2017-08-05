@@ -22,7 +22,7 @@ defmodule PanglaoElixir.Client do
   def process_request_options(options) do
     options
     |> Keyword.merge([hackney: [pool: :panglao_elixir]])
-    |> Keyword.merge([recv_timeout: 20_000, timeout: 20_000])
+    |> Keyword.merge([recv_timeout: 30_000, timeout: 30_000])
   end
 
   def process_response_body(body) do
