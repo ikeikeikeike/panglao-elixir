@@ -3,7 +3,7 @@ defmodule PanglaoElixir.Mixfile do
 
   def project do
     [app: :panglao_elixir,
-     version: "0.1.15",
+     version: "0.1.16",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,

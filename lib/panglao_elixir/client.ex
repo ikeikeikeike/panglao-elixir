@@ -23,6 +23,15 @@ defmodule PanglaoElixir.Client do
     options
     |> Keyword.merge([hackney: [pool: :panglao_elixir]])
     |> Keyword.merge([recv_timeout: 30_000, timeout: 30_000])
+    |> Keyword.merge(https_options())
+  end
+
+  defp https_options do
+    if String.starts_with?(@endpoint, "https") do
+      [ssl: [{:versions, [:"tlsv1.2"]}]]
+    else
+      []
+    end
   end
 
   def process_response_body(body) do
